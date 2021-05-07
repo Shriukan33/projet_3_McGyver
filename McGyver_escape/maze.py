@@ -30,7 +30,7 @@ class Maze:
         row = 0
 
         for tile in range(self.x * self.y):
-            if self.maze[column + row * self.y] == 1: #Walls
+            if self.maze[row + column * self.y] == 1: # Walls
                 WIN.blit(image, (row * 32, column * 32)) # Will use 32px assets
 
             column += 1 # Right tile next
@@ -45,16 +45,19 @@ class Player:
 
     # TODO: Add collision 
     def moveUp(self):
-        self.y -= speed
+        self.y -= self.speed
     
     def moveDown(self):
-        self.y += speed
+        self.y += self.speed
     
     def moveLeft(self):
-        self.x -= speed
+        self.x -= self.speed
     
     def moveRight(self):
-        self.x += speed
+        self.x += self.speed
+
+    def detect_collision(self):
+        pass
 
 class App:
 
@@ -87,6 +90,19 @@ class App:
         self.maze.draw(self.WIN, self.wall) # Draw maze
         pygame.display.flip() # Update the whole screen 
 
+    def movements(self):
+        keys_pressed = pygame.key.get_pressed()
+
+        if keys_pressed[pygame.K_UP]: # Up arrow
+            self.player.moveUp()
+        if keys_pressed[pygame.K_DOWN]: # Down arrow
+            self.player.moveDown()
+        if keys_pressed[pygame.K_LEFT]: # Left arrow
+            self.player.moveLeft()
+        if keys_pressed[pygame.K_RIGHT]: # Right arrow
+            self.player.moveRight()
+
+
     def play(self):
 
         # Framerate parameters
@@ -100,7 +116,10 @@ class App:
                 if event.type == pygame.QUIT:
                     self._running = False
                     pygame.quit()
-                self.render()
+
+                self.movements()
+
+                self.render()   
 
 if __name__ == '__main__':
     app = App()

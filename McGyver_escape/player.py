@@ -31,25 +31,21 @@ class Player(pygame.sprite.Sprite):
         # with wall
         self.rect.y -= self.speed
         if self.game.check_collision(self, self.game.all_walls):
-            print("collide UP")
             self.rect.y += self.speed
 
     def moveDown(self):
         self.rect.y += self.speed
         if self.game.check_collision(self, self.game.all_walls):
-            print("collide Down")
             self.rect.y -= self.speed
 
     def moveLeft(self):
         self.rect.x -= self.speed
         if self.game.check_collision(self, self.game.all_walls):
-            print("collide Left")
             self.rect.x += self.speed
 
     def moveRight(self):
         self.rect.x += self.speed
         if self.game.check_collision(self, self.game.all_walls):
-            print("collide Right")
             self.rect.x -= self.speed
 
     def movements(self):

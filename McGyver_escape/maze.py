@@ -17,5 +17,6 @@ class Maze(pygame.sprite.Sprite):
         self.image = pygame.image.load(ASSETS + "wall.png")
         self.image = pygame.transform.scale(self.image, (32, 32))
         self.rect = self.image.get_rect()
+        # When we create a wall, we give the coordinates with x_pos and y_pos
         self.rect.x = x_pos
         self.rect.y = y_pos

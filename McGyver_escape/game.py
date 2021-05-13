@@ -54,7 +54,5 @@ class Game:
                 row += 1
 
     def check_collision(self, sprite, group):
-        print(pygame.sprite.spritecollide(
-            sprite, group, False, pygame.sprite.collide_mask))
         return pygame.sprite.spritecollide(
             sprite, group, False, pygame.sprite.collide_mask)

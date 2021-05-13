@@ -30,6 +30,7 @@ while running:
     SCREEN.blit(game.player.image, game.player.rect)
     # Draws walls of labyrinth
     game.all_walls.draw(SCREEN)
+    game.all_items.draw(SCREEN)
 
     pygame.display.flip()
 

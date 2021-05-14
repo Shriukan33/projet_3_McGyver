@@ -6,16 +6,23 @@ import pygame
 from player import Player
 from maze import Maze
 from items import Items
+from guard import Guard
+from exit import Exit
 
 
 class Game:
 
     def __init__(self):
+
+        # Bools to access different screens
+        self.main_game = True
+        self.lose_screen = False
+        self.win_screen = False
         # Using groups for collisions
         self.all_players = pygame.sprite.Group()
-        self.player = Player(self)
-        self.all_players.add(self.player)
+        self.all_guards = pygame.sprite.Group()
         self.all_walls = pygame.sprite.Group()
+        self.all_exits = pygame.sprite.Group()
         self.all_items = pygame.sprite.Group()
         # Will increase when player picks an item
         self.inventory = 0
@@ -23,10 +30,10 @@ class Game:
         self.item_list = ["aiguille.png", "tube_plastique.png", "seringue.png"]
         random.shuffle(self.item_list)
         # This is the layout of the maze
-        # 1 = Wall, 2 = items (randomised), 3 = Guardian, 4 = Exit
+        # 1 = Wall, 2 = items (randomised), 3 = Guardian, 4 = Exit, 5 = Player
         self.layout = [
             1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+            1, 5, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
             1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1,
             1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1,
             1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1,
@@ -65,7 +72,7 @@ class Game:
 
         # size**2 because width*height = number of tiles
         for tile in range(size**2):
-            # builds a wall and rect each time it encounters 1
+            # 1 = walls
             if self.layout[row + column * size] == 1:
                 # We create an instance of Maze and add it to wall group
                 wall = Maze(self, row*32, column*32)
@@ -76,6 +83,21 @@ class Game:
                 asset_name = self.item_list.pop()
                 item = Items(self, asset_name, row*32, column*32)
                 self.all_items.add(item)
+
+            # 3 = Guard
+            elif self.layout[row + column * size] == 3:
+                guard = Guard(self, row*32, column*32)
+                self.all_guards.add(guard)
+
+            # 4 = Exit
+            elif self.layout[row + column * size] == 4:
+                exit = Exit(self, row*32, column*32)
+                self.all_exits.add(exit)
+
+            # 5 = Player
+            elif self.layout[row + column * size] == 5:
+                self.player = Player(self, row*32, column*32)
+                self.all_players.add(self.player)
 
             column += 1
             if column > size - 1:

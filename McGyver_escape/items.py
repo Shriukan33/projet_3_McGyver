@@ -15,3 +15,9 @@ class Items(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x_pos
         self.rect.y = y_pos
+
+    def check_pick_up(self):
+        if self.game.check_collision(self, self.game.all_players):
+            self.game.inventory += 1
+            print("Inventory : ", self.game.inventory)
+            self.kill()

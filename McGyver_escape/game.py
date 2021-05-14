@@ -17,6 +17,8 @@ class Game:
         self.all_players.add(self.player)
         self.all_walls = pygame.sprite.Group()
         self.all_items = pygame.sprite.Group()
+        # Will increase when player picks an item
+        self.inventory = 0
         # Items will spawn in random order
         self.item_list = ["aiguille.png", "tube_plastique.png", "seringue.png"]
         random.shuffle(self.item_list)

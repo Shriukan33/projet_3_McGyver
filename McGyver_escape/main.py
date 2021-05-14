@@ -26,11 +26,14 @@ while running:
     clock.tick(FPS)
     # Filling the bacground in black, it's dungeon-like
     SCREEN.fill((0, 0, 0))
-    # Draws player
-    SCREEN.blit(game.player.image, game.player.rect)
-    # Draws walls of labyrinth
+    # Draws all assets
+    game.all_players.draw(SCREEN)
     game.all_walls.draw(SCREEN)
     game.all_items.draw(SCREEN)
+
+    # Check if Mc giver is picking up an object
+    for item in game.all_items:
+        item.check_pick_up()
 
     pygame.display.flip()
 

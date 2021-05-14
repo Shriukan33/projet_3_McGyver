@@ -19,5 +19,4 @@ class Items(pygame.sprite.Sprite):
     def check_pick_up(self):
         if self.game.check_collision(self, self.game.all_players):
             self.game.inventory += 1
-            print("Inventory : ", self.game.inventory)
             self.kill()

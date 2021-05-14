@@ -8,7 +8,7 @@ ASSETS = str(Path(__file__).resolve().parent) + "/ressources/"
 
 class Player(pygame.sprite.Sprite):
 
-    def __init__(self, game):
+    def __init__(self, game, x_pos, y_pos):
         # We call the init of parent class Sprite
         super().__init__()
         # We set a Game instance to check for collisions
@@ -23,8 +23,8 @@ class Player(pygame.sprite.Sprite):
         # Will also be used to detect collisions
         self.rect = self.image.get_rect()
         # Default position is top left corner
-        self.rect.x = 32
-        self.rect.y = 32
+        self.rect.x = x_pos
+        self.rect.y = y_pos
 
     def moveUp(self):
         # Moves the rect, check for collision, cancel movement if collisition
@@ -53,9 +53,13 @@ class Player(pygame.sprite.Sprite):
 
         if keys_pressed[pygame.K_UP]:  # Up arrow
             self.moveUp()
+            return 0
         if keys_pressed[pygame.K_DOWN]:  # Down arrow
             self.moveDown()
+            return 0
         if keys_pressed[pygame.K_LEFT]:  # Left arrow
             self.moveLeft()
+            return 0
         if keys_pressed[pygame.K_RIGHT]:  # Right arrow
             self.moveRight()
+            return 0

@@ -28,7 +28,7 @@ class Game:
         # Will increase when player picks an item
         self.inventory = 0
         # Items will spawn in random order
-        self.item_list = ["aiguille.png", "tube_plastique.png", "seringue.png"]
+        self.item_list = ["aiguille.png", "tube_plastique.png", "ether.png"]
         random.shuffle(self.item_list)
         # This is the layout of the maze
         # 1 = Wall, 2 = items (randomised), 3 = Guardian, 4 = Exit, 5 = Player

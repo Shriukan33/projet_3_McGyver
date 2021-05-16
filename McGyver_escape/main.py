@@ -1,8 +1,9 @@
+import pygame
+
+from game import Game
+
+
 def main():
-
-    import pygame
-
-    from game import Game
 
     # Initialize the pygame modules
     pygame.init()

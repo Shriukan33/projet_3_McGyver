@@ -47,19 +47,3 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += self.speed
         if self.game.check_collision(self, self.game.all_walls):
             self.rect.x -= self.speed
-
-    def movements(self):
-        keys_pressed = pygame.key.get_pressed()
-
-        if keys_pressed[pygame.K_UP]:  # Up arrow
-            self.moveUp()
-            return 0
-        if keys_pressed[pygame.K_DOWN]:  # Down arrow
-            self.moveDown()
-            return 0
-        if keys_pressed[pygame.K_LEFT]:  # Left arrow
-            self.moveLeft()
-            return 0
-        if keys_pressed[pygame.K_RIGHT]:  # Right arrow
-            self.moveRight()
-            return 0

@@ -64,7 +64,15 @@ def main():
 
                 # Placed here, holding the key will not produce
                 # several movements.
-                game.player.movements()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_UP:
+                        game.player.moveUp()
+                    if event.key == pygame.K_DOWN:
+                        game.player.moveDown()
+                    if event.key == pygame.K_RIGHT:
+                        game.player.moveRight()
+                    if event.key == pygame.K_LEFT:
+                        game.player.moveLeft()
 
         while game.lose_screen:
 

@@ -9,7 +9,7 @@ def main():
 
     # General display settings
     pygame.display.set_caption("McGyver escape")
-    SCREEN = pygame.display.set_mode((32*15, 32*15))
+    SCREEN = pygame.display.set_mode((32*15, 32*16))
     # Framerate control
     clock = pygame.time.Clock()
     FPS = 24
@@ -33,6 +33,13 @@ def main():
             game.all_guards.draw(SCREEN)
             game.all_exits.draw(SCREEN)
 
+            # Inventory display, clears the objective
+            inventory_font = pygame.font.SysFont(None, 28)
+            inventory_font_img = inventory_font.render(
+                "Gather all 3 items to escape ! ({}/3)".format(game.inventory),
+                True, (255, 255, 255))
+            SCREEN.blit(inventory_font_img, (10, 485))
+
             # Check if Mc giver is picking up an object
             for item in game.all_items:
                 item.check_pick_up()
@@ -53,7 +60,7 @@ def main():
                 # Check if we are quitting the game
                 if event.type == pygame.QUIT:
                     running = False
-                    pygame.QUIT
+                    pygame.quit()
 
                 # Placed here, holding the key will not produce
                 # several movements.

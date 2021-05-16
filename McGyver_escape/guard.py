@@ -7,6 +7,7 @@ ASSETS = str(Path(__file__).resolve().parent) + "/ressources/"
 
 
 class Guard(pygame.sprite.Sprite):
+    """Guard handles the collision and appearance of guards in the maze"""
 
     def __init__(self, game, x_pos, y_pos):
         super().__init__()
@@ -18,6 +19,12 @@ class Guard(pygame.sprite.Sprite):
         self.rect.y = y_pos
 
     def check_fight(self):
+        """Checks if player collides with guard and handle consequences.
+
+        If the player has 3 items, guard dies.
+        Otherwise, player dies and lose screen is enabled.
+        """
+
         if self.game.check_collision(self, self.game.all_players):
             if self.game.inventory == 3:
                 self.kill()

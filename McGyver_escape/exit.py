@@ -7,6 +7,7 @@ ASSETS = str(Path(__file__).resolve().parent) + "/ressources/"
 
 
 class Exit(pygame.sprite.Sprite):
+    """Handles collision with player and appearance of exits"""
 
     def __init__(self, game, x_pos, y_pos):
         super().__init__()
@@ -18,6 +19,8 @@ class Exit(pygame.sprite.Sprite):
         self.rect.y = y_pos
 
     def check_exit(self):
+        """Checks player collision with exit, and enables win screen"""
+
         if self.game.check_collision(self, self.game.all_players):
             self.game.main_game = False
             self.game.win_screen = True

@@ -7,6 +7,7 @@ ASSETS = str(Path(__file__).resolve().parent) + "/ressources/"
 
 
 class Maze(pygame.sprite.Sprite):
+    """Handles skin of walls"""
 
     def __init__(self, game, x_pos, y_pos):
         # We call the init of parent class Sprite

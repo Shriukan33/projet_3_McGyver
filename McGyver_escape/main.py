@@ -75,6 +75,8 @@ def main():
                     if event.key == pygame.K_LEFT:
                         game.player.moveLeft()
 
+        # Lose screen enabled when you encounter a guard and don't have all
+        # items
         while game.lose_screen:
 
             clock.tick(FPS)
@@ -112,6 +114,7 @@ def main():
                     running = False
                     game.lose_screen = False
 
+        # Win screen enabled when getting to the exit
         while game.win_screen:
 
             clock.tick(FPS)
@@ -130,6 +133,7 @@ def main():
             text_rect = win_subtext_img.get_rect(center=(240, 240))
             SCREEN.blit(win_subtext_img, text_rect)
 
+            # Updates the screen
             pygame.display.flip()
 
             for event in pygame.event.get():

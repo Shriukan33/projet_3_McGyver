@@ -7,6 +7,7 @@ ASSETS = str(Path(__file__).resolve().parent) + "/ressources/"
 
 
 class Player(pygame.sprite.Sprite):
+    """Handles Player movement and appearance"""
 
     def __init__(self, game, x_pos, y_pos):
         # We call the init of parent class Sprite
@@ -22,11 +23,16 @@ class Player(pygame.sprite.Sprite):
         # We create a rect in which we will draw its image
         # Will also be used to detect collisions
         self.rect = self.image.get_rect()
-        # Default position is top left corner
+        # Default position
         self.rect.x = x_pos
         self.rect.y = y_pos
 
     def moveUp(self):
+        """Checks if movement brings collision with wall.
+
+        If a collision is detected with a wall, cancels the movement.
+        """
+
         # Moves the rect, check for collision, cancel movement if collisition
         # with wall
         self.rect.y -= self.speed
@@ -34,16 +40,31 @@ class Player(pygame.sprite.Sprite):
             self.rect.y += self.speed
 
     def moveDown(self):
+        """Checks if movement brings collision with wall.
+
+        If a collision is detected with a wall, cancels the movement.
+        """
+
         self.rect.y += self.speed
         if self.game.check_collision(self, self.game.all_walls):
             self.rect.y -= self.speed
 
     def moveLeft(self):
+        """Checks if movement brings collision with wall.
+
+        If a collision is detected with a wall, cancels the movement.
+        """
+
         self.rect.x -= self.speed
         if self.game.check_collision(self, self.game.all_walls):
             self.rect.x += self.speed
 
     def moveRight(self):
+        """Checks if movement brings collision with wall.
+
+        If a collision is detected with a wall, cancels the movement.
+        """
+
         self.rect.x += self.speed
         if self.game.check_collision(self, self.game.all_walls):
             self.rect.x -= self.speed

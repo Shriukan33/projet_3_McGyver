@@ -6,6 +6,7 @@ ASSETS = str(Path(__file__).resolve().parent) + "/ressources/"
 
 
 class Items(pygame.sprite.Sprite):
+    """Handles collision with player and appearance of items"""
 
     def __init__(self, game, asset_name, x_pos, y_pos):
         super().__init__()
@@ -17,6 +18,12 @@ class Items(pygame.sprite.Sprite):
         self.rect.y = y_pos
 
     def check_pick_up(self):
+        """Checks collision with player.
+
+        Kills itself and increase inventory counter if the player
+        collides with an item.
+        """
+
         if self.game.check_collision(self, self.game.all_players):
             self.game.inventory += 1
             self.kill()

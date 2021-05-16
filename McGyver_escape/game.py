@@ -11,6 +11,7 @@ from exit import Exit
 
 
 class Game:
+    """Handles sprite groups, maze building, inventory and collision checks"""
 
     def __init__(self):
 
@@ -52,7 +53,12 @@ class Game:
         self.draw_maze()
 
     def place_items(self):
-        """ Randomly places items in the maze """
+        """ Randomly places items in the maze
+
+        It searches for 0 (=free space) in the self.layout, and apply a chance
+        place an item on said position.
+        """
+
         item_list = 3
         layout = deepcopy(self.layout)
         while item_list:
@@ -64,6 +70,18 @@ class Game:
         return layout
 
     def draw_maze(self):
+        """Draws the self.layout's content on screen and creates different entities
+
+        Each number in self.layout corresponds to an element of the maze.
+        0 = Free space to walk and place items
+        1 = Walls blocking the player
+        2 = items placed by the place_items function at random
+        3 = Guard : kills the player if he doesn't have all 3 items
+        4 = Exit : Enables the win screen
+        5 = Start position of player
+        At each number (except 0) a sprite is created and added to its group
+        """
+
         # Size of the maze in height and width (both are equal)
         size = 15
         # Counters to build the maze
@@ -105,5 +123,7 @@ class Game:
                 row += 1
 
     def check_collision(self, sprite, group):
+        """Checks for collision between a sprite and a group of sprites"""
+
         return pygame.sprite.spritecollide(
             sprite, group, False, pygame.sprite.collide_mask)

@@ -35,11 +35,18 @@ def main():
             game.all_exits.draw(SCREEN)
 
             # Inventory display, clears the objective
-            inventory_font = pygame.font.SysFont(None, 28)
-            inventory_font_img = inventory_font.render(
-                "Gather all 3 items to escape ! ({}/3)".format(game.inventory),
-                True, (255, 255, 255))
-            SCREEN.blit(inventory_font_img, (10, 485))
+            if game.inventory != 3:
+                inventory_font = pygame.font.SysFont(None, 26)
+                inventory_font_img = inventory_font.render(
+                    "Gather all 3 items to craft a seringe ! ({}/3)".format(
+                        game.inventory),
+                    True, (255, 255, 255))
+                SCREEN.blit(inventory_font_img, (10, 485))
+            elif game.inventory == 3:
+                inventory_font_img = inventory_font.render(
+                    "Seringe crafted ! Put the guard to sleep and escape!",
+                    True, (255, 255, 255))
+                SCREEN.blit(inventory_font_img, (10, 485))
 
             # Check if Mc giver is picking up an object
             for item in game.all_items:

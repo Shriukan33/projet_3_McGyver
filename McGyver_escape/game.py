@@ -9,6 +9,8 @@ from items import Items
 from guard import Guard
 from exit import Exit
 
+from maze_layout import layout
+
 
 class Game:
     """Handles sprite groups, maze building, inventory and collision checks"""
@@ -30,25 +32,8 @@ class Game:
         # Items will spawn in random order
         self.item_list = ["aiguille.png", "tube_plastique.png", "ether.png"]
         random.shuffle(self.item_list)
-        # This is the layout of the maze
-        # 1 = Wall, 2 = items (randomised), 3 = Guardian, 4 = Exit, 5 = Player
-        self.layout = [
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-            1, 5, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-            1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 1,
-            1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1,
-            1, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1,
-            1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 1,
-            1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1,
-            1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1,
-            1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1,
-            1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1,
-            1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1,
-            1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1,
-            1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1,
-            1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 3, 1,
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1
-        ]
+        # imported from maze_layout
+        self.layout = layout
         self.layout = self.place_items()
         self.draw_maze()
 

@@ -3,7 +3,7 @@ from copy import deepcopy
 
 import pygame
 
-from player import Player
+from player import Player, ASSETS
 from maze import Maze
 from items import Items
 from guard import Guard
@@ -116,6 +116,13 @@ class Game:
             elif self.layout[row + column * size] == 5:
                 self.player = Player(self, row*32, column*32)
                 self.all_players.add(self.player)
+
+                # Entrance addead beneath player
+                entrance = Maze(self, row*32, column*32)
+                entrance.image = pygame.image.load(ASSETS + "entrance.png")
+                entrance.image = pygame.transform.scale(
+                    entrance.image, (32, 32))
+                self.all_walls.add(entrance)
 
             column += 1
             if column > size - 1:

@@ -68,6 +68,7 @@ def main():
                 # Check if we are quitting the game
                 if event.type == pygame.QUIT:
                     running = False
+                    game.main_game = False
                     pygame.quit()
 
                 # Placed here, holding the key will not produce

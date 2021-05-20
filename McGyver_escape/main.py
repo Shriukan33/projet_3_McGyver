@@ -28,11 +28,11 @@ def main():
             # Filling the bacground in black, it's dungeon-like
             SCREEN.fill((0, 0, 0))
             # Draws all assets
-            game.all_players.draw(SCREEN)
             game.all_walls.draw(SCREEN)
             game.all_items.draw(SCREEN)
             game.all_guards.draw(SCREEN)
             game.all_exits.draw(SCREEN)
+            game.all_players.draw(SCREEN)
 
             # Inventory display, clears the objective
             if game.inventory != 3:

@@ -68,3 +68,27 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += self.speed
         if self.game.check_collision(self, self.game.all_walls):
             self.rect.x -= self.speed
+
+    def player_movements(event, game):
+        """Handles Player directional movements"""
+        if event.key == pygame.K_UP:
+            game.player.moveUp()
+        if event.key == pygame.K_DOWN:
+            game.player.moveDown()
+        if event.key == pygame.K_RIGHT:
+            game.player.moveRight()
+        if event.key == pygame.K_LEFT:
+            game.player.moveLeft()
+
+    def interaction_check(game):
+        # Checks if Mc giver is picking up an object
+        for item in game.all_items:
+            item.check_pick_up()
+
+        # Checks If McGyver is engaging a fight with the guard
+        for guard in game.all_guards:
+            guard.check_fight()
+
+        # Checks if Mc Gyver is out !
+        for exit in game.all_exits:
+            exit.check_exit()
